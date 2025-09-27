@@ -46,6 +46,7 @@ app.post('/api/transcribe', upload.single('file'), async (req, res) => {
     console.error('Error processing audio:', err);
     res.status(500).send(String(err.message || err));
   } finally {
+
     try { fs.unlinkSync(filePath); } catch(e){/* ignore */ }
   }
 });
