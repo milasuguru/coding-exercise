@@ -11,7 +11,3 @@ They reflect a focused implementation: skeleton frontend + backend, integration 
 5. Packaging, README polishing, prompts & time log — 4 minutes
 
 Total: ~50 minutes
-
-Notes:
-- Times are approximate and intentionally conservative. The code is a working scaffold but requires
-  `npm install` and a valid `OPENAI_API_KEY` to function end-to-end.
