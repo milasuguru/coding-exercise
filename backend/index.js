@@ -24,7 +24,6 @@ app.post('/api/transcribe', upload.single('file'), async (req, res) => {
   if (!req.file) return res.status(400).send('No file uploaded');
   const filePath = req.file.path;
   try {
-    // 1) Transcribe with Whisper model
     const transcription = await client.audio.transcriptions.create({
       file: fs.createReadStream(filePath),
       model: 'whisper-1'
@@ -32,7 +31,6 @@ app.post('/api/transcribe', upload.single('file'), async (req, res) => {
 
     const text = transcription.text || '';
 
-    // 2) Translate to Spanish via chat-completion
     const prompt = `Translate the following text to Spanish (concise, natural):\n\n${text}`;
 
     const completion = await client.chat.completions.create({
@@ -48,7 +46,6 @@ app.post('/api/transcribe', upload.single('file'), async (req, res) => {
     console.error('Error processing audio:', err);
     res.status(500).send(String(err.message || err));
   } finally {
-    // remove temp file
     try { fs.unlinkSync(filePath); } catch(e){/* ignore */ }
   }
 });
