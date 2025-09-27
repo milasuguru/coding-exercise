@@ -29,7 +29,6 @@ app.post('/api/transcribe', upload.single('file'), async (req, res) => {
     });
 
     const text = transcription.text || '';
-    
     const prompt = `Translate the following text to Spanish (concise, natural):\n\n${text}`;
 
     const completion = await client.chat.completions.create({
